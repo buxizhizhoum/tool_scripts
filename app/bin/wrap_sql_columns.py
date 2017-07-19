@@ -52,9 +52,7 @@ class SQLprocessor(object):
 
 if __name__ == "__main__":
     test_string = "store_name, address"
-    # test_string = "ua, ub, uc, uab, ucb, ia, ib, ic, costtl, cosa, cosb, " \
-    #               "cosc, pttl, pa, pb, pc"
 
     sql_processor = SQLprocessor()
-    res = sql_processor.wrap_sql(test_string)
-    print res
+    wrapped_columns = sql_processor.wrap_sql(test_string)
+    print wrapped_columns
