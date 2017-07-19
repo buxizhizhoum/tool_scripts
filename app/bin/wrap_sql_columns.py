@@ -22,10 +22,13 @@ Generally, after we get the column we would like to insert values, such as
 manually, if there are too many columns, it would be boring and very easy
 to make mistakes.
 
-What this scripts does is to return a string that contains "%()s" in each 
+What wrap_columns does is to return a string that contains "%()s" in each 
 words of the columns been provided.
 for example, when "store_name, address" been provided, 
 "(%(store_name)s, %(address)s)" will be returned.
+
+Also a complete sql used to insert data is provided, it is made by 
+function insert_sql_maker()
 """
 
 
@@ -33,7 +36,7 @@ class SQLprocessor(object):
     def __init__(self):
         pass
 
-    def wrap_sql(self, columns):
+    def wrap_columns(self, columns):
         """
         Accept a string contains all of the columns, wrap it with "%()s" 
         and return
@@ -49,10 +52,32 @@ class SQLprocessor(object):
         result = ", ".join(tmp)
         return result
 
+    def insert_sql_maker(self, table_name, columns):
+        """
+        Assemble insert sql based on table name and columns
+        if table name is "store", columns is "store_name, address",
+        sql would be: 
+        
+        INSERT INTO store (store_name, address) VALUES (%(store_name)s, %(address)s)
+        
+        :param table_name: table name to insert data
+        :param columns:  columns to insert data
+        :return:  insert sql
+        """
+        wrap_columns = self.wrap_columns(columns)
+        sql = "INSERT INTO %s (%s) VALUES (%s)" \
+              % (table_name, columns, wrap_columns)
+        return sql
+
 
 if __name__ == "__main__":
     test_string = "store_name, address"
 
     sql_processor = SQLprocessor()
-    wrapped_columns = sql_processor.wrap_sql(test_string)
+    # wrap columns with "%()s"
+    wrapped_columns = sql_processor.wrap_columns(test_string)
+    # insert sql, a complete sql could be used in execute(sql, args) in pymysql
+    insert_sql = sql_processor.insert_sql_maker(table_name="store",
+                                                columns=test_string)
     print wrapped_columns
+    print insert_sql
