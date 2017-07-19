@@ -7,4 +7,4 @@ tmp = None
 # res = {k: v for k, v in test_dict.iteritems()}
 # print res
 # print min(res)
-print max([float(item) for item in test_dict.values()])
+print min([float(item) for item in test_dict.values()])
