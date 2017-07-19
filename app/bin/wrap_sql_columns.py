@@ -32,7 +32,7 @@ function insert_sql_maker()
 """
 
 
-class SQLprocessor(object):
+class SQLProcessor(object):
     def __init__(self):
         pass
 
@@ -73,7 +73,7 @@ class SQLprocessor(object):
 if __name__ == "__main__":
     test_string = "store_name, address"
 
-    sql_processor = SQLprocessor()
+    sql_processor = SQLProcessor()
     # wrap columns with "%()s"
     wrapped_columns = sql_processor.wrap_columns(test_string)
     # insert sql, a complete sql could be used in execute(sql, args) in pymysql
