@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+import time
 import mysql.connector.pooling
 
 
@@ -59,6 +60,7 @@ class MySQLPool(object):
         pool = mysql.connector.pooling.MySQLConnectionPool(
             pool_name=pool_name,
             pool_size=pool_size,
+            pool_reset_session=True,
             **self.dbconfig)
         return pool
 
@@ -90,10 +92,21 @@ class MySQLPool(object):
             cursor.execute(sql)
         if commit is True:
             conn.commit()
+            # TODO what is the difference between add_connection and close?
+            # why when close is used, connection of mysql is not decrease, it
+            # seems that it has the same effect with add_connection.
+            # when add_connection is used it is faster than close
+            # conn.close will finally use add_connection
+            # self.pool.add_connection()
+            # self.pool.add_connection(conn._cnx)
+            # conn.close() # close conn seems enough.
             self.close(conn, cursor)
             return None
         else:
             res = cursor.fetchall()
+            # self.pool.add_connection()
+            # self.pool.add_connection(conn._cnx)
+            # conn.close() # close conn seems enough.
             self.close(conn, cursor)
             return res
 
@@ -112,20 +125,25 @@ class MySQLPool(object):
         cursor.executemany(sql, args)
         if commit is True:
             conn.commit()
-            self.close(conn, cursor)
+            self.pool.add_connection()
+            # self.close(conn, cursor)
             return None
         else:
             res = cursor.fetchall()
-            self.close(conn, cursor)
+            self.pool.add_connection()
+            # self.close(conn, cursor)
             return res
 
 
 if __name__ == "__main__":
     mysql_pool = MySQLPool(**dbconfig)
     sql = "select * from store WHERE create_time < '2017-06-02'"
-    mysql_pool.execute(sql)
-    mysql_pool.execute(sql)
-    mysql_pool.execute(sql)
-    mysql_pool.execute(sql)
-    mysql_pool.execute(sql)
+
+    # test...
+    while True:
+        t0 = time.time()
+        for i in range(10):
+            mysql_pool.execute(sql)
+            print i
+        print "time cousumed:", time.time() - t0
 
