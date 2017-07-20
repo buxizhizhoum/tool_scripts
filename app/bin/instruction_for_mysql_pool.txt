@@ -1,0 +1,14 @@
+When connection pool is used, a connection is get from the pool, and it is
+add to the pool when used.
+There are 3 method to keep the connection pool is full:
+    1. conn.close()
+    2. self.pool.add_connection()
+    3. self.pool.add_connection(conn._cnx)
+    The method 1, finally cause the add_connection function, and add the
+    conn._cnx connection to the pool, so method 1 and method 3 is almost
+    the same.
+    Method 2 just add a new connection share the same config info with
+    other connections, so if this method is used, the connection will be
+    refreshed one by one when in usage.
+    And method 2 is slightly faster than the other 2, reason is not
+    clear so far.
