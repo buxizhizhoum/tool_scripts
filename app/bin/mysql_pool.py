@@ -125,13 +125,13 @@ class MySQLPool(object):
         cursor.executemany(sql, args)
         if commit is True:
             conn.commit()
-            self.pool.add_connection()
-            # self.close(conn, cursor)
+            # self.pool.add_connection()
+            self.close(conn, cursor)
             return None
         else:
             res = cursor.fetchall()
-            self.pool.add_connection()
-            # self.close(conn, cursor)
+            # self.pool.add_connection()
+            self.close(conn, cursor)
             return res
 
 
