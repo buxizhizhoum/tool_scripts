@@ -12,3 +12,7 @@ ticker_of_function.py
     time of a function.
 
     When it is needed, just put @ticker before the definition of the function.
+
+mysql_pool.py
+    
+    Create a mysql connection pool, which could be used in the following codes.
