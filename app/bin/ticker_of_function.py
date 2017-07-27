@@ -4,6 +4,12 @@
 This module contains a decorator which is used to calculate the execute time
 of a function.
 
+Decorators have
+the ability to run additional code before and after any calls to the 
+functions they wrap. This allows them to access and modify input arguments 
+and return values. This functionality can be useful for enforcing semantics, 
+debugging, registering functions, and more
+
 When it is needed, just put @ticker before the definition of the function.
 """
 import time
