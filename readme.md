@@ -17,6 +17,12 @@ mysql_pool.py
     
     Create a mysql connection pool, which could be used in the following codes.
 
+limit_execute_time.py
+
+    A method used to limit execute time of a function which might has no 
+    timeout parameter.
+
 file_lock.py
     
-    provide a method to lock a file, which could be used in multiprocesses.
+    Provide a method to lock a file, which could be used in multiprocesses.
+    
