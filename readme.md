@@ -26,3 +26,7 @@ file_lock.py
     
     Provide a method to lock a file, which could be used in multiprocesses.
     
+faster_os_walk.py
+    
+    This module introduce a faster module that could accelerate the traverse 
+    directory.
