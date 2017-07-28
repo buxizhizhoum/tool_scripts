@@ -39,7 +39,15 @@ signal.alarm(0)
 time.sleep(1)
 
 """--------------------------------------------------------------"""
-
+"""
+The with statement version of this is better because it eliminates the need 
+to write the repetitive code of the try/finally construction. It’s easy to 
+make your objects and functions capable of use in with statements by using 
+the contextlib built-in module.
+This module contains the contextmanager decorator, which lets a simple 
+function be used in with statements. This is much easier than defining a new 
+class with the special methods __enter__ and __exit__ (the standard way)
+"""
 # more graceful one
 
 from contextlib import contextmanager
