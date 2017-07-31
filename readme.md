@@ -30,3 +30,7 @@ faster_os_walk.py
     
     This module introduce a faster module that could accelerate the traverse 
     directory.
+
+logger.py
+    
+    A module encapsulated python logging, which make it easier to record log.
