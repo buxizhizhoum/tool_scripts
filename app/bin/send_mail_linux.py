@@ -1,7 +1,11 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 """
-send mail with the service of server instead of register an mailbox to send it.
+send mail with the service of a server instead of register an mailbox
+to send it.
+
+some trick is need to accelerate the time spend to send a mail, one easy way
+is to change the hostname of the server, this could be easily found by google.
 """
 from email.mime.text import MIMEText
 from subprocess import Popen, PIPE
