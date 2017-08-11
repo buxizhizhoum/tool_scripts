@@ -34,3 +34,8 @@ faster_os_walk.py
 logger.py
     
     A module encapsulated python logging, which make it easier to record log.
+
+send_mail_linux.py
+
+    A module used to send mail with the service of linux server without
+    registering an mailbox.
