@@ -1,7 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 """
-method used to trace exception
+method used to trace exception, it is useful when there is an Exception, but
+the detail information such as line number is not available.
 """
 import traceback
 
