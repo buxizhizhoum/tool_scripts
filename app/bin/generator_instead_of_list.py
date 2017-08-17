@@ -3,6 +3,8 @@
 """
 An example from effective python, telling about consider generators instead
 of list, item 16.
+
+It becomes easier when use for loop, when encounter yield, return one value.
 """
 
 
