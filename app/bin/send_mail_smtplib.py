@@ -64,7 +64,7 @@ class MailSender(object):
 
         try:
             smtpObj = smtplib.SMTP()
-            smtpObj.connect(mail_host, 25)  # 25 为 SMTP 端口号
+            smtpObj.connect(mail_host, 25)  # 25 is the SMTP port
             smtpObj.login(mail_user, mail_pass)
             smtpObj.sendmail(sender, receivers, message.as_string())
             smtpObj.close()
