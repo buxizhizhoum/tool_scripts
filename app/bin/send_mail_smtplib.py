@@ -26,7 +26,7 @@ class MailSender(object):
         initializing
         :param host: smtp server
         :param sender: sender
-        :param password: password， password or authentication code of client
+        :param password: password, password or authentication code of client
         """
         self.host = host
         self.port = port if port is not None else 25
