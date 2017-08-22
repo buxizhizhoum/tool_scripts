@@ -76,7 +76,7 @@ class MailSender(object):
 
 if __name__ == "__main__":
 
-    receivers = ['bad_data_alarm@126.com', "mapeaks@126.com"]
+    receivers = ['abc@126.com', "123@126.com"]
 
     mail_sender = MailSender(
         host="smtp.126.com",
