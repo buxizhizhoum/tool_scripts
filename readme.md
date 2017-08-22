@@ -39,3 +39,13 @@ send_mail_linux.py
 
     A module used to send mail with the service of linux server without
     registering an mailbox.
+
+send_mail_smtplib.py
+
+    Send mail with smtplib, this need to supply the username and password of a
+    mailbox
+
+    When it is slow to send a mail with the service of linux, and it is not
+    possible to change the host name of the machine to accelerate it, or there
+    are other problems when sending mail with mail service on linux this method
+    may be an alternative solution.
