@@ -47,7 +47,7 @@ class ConsumerThread(Thread):
 if __name__ == "__main__":
     queue = Queue(10)
 
-    # simple start
+    # simple method to start
     # producer = ProducerThread("Tom", queue)
     # consumer = ConsumerThread("Jerry", queue)
     # producer.start()
