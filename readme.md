@@ -49,3 +49,8 @@ send_mail_smtplib.py
     possible to change the host name of the machine to accelerate it, or there
     are other problems when sending mail with mail service on linux this method
     may be an alternative solution.
+
+producer_consumer_basic.py
+
+    Basic usage of producer and consumer, producer produce a random data to
+    Queue and consumer consume it from Queue.
