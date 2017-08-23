@@ -28,7 +28,7 @@ class ConsumerThread(Thread):
         global queue
         while True:
             num = queue.get()
-            # queue.task_done()
+            queue.task_done()  # todo
             print "Consumed", num
             time.sleep(random.random())
 
