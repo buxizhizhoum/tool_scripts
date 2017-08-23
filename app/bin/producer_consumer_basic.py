@@ -13,6 +13,9 @@ queue = Queue(10)
 
 
 class ProducerThread(Thread):
+    """
+    Basic version, only need method run()
+    """
     def run(self):
         nums = range(5)
         global queue
@@ -24,6 +27,9 @@ class ProducerThread(Thread):
 
 
 class ConsumerThread(Thread):
+    """
+    Basic version, only need method run()
+    """
     def run(self):
         global queue
         while True:
