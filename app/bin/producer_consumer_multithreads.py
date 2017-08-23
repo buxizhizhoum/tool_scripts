@@ -4,9 +4,9 @@
 Updated version, could pass name for producer and consumer and queue
 when initializing
 """
-from threading import Thread
 import time
 import random
+from threading import Thread
 from Queue import Queue
 
 
