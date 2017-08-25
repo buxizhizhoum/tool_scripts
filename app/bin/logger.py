@@ -8,6 +8,8 @@ The usage is easy, just get an instantiation of LogHandler and then get the
 logging obj by calling log_stream, log_file or log_rotating_file to get an 
 logging obj to record log.
 """
+import time
+
 import logging
 import os
 from logging.handlers import RotatingFileHandler
@@ -152,4 +154,8 @@ if __name__ == "__main__":
     log_1.error("log1test...")
     log_2.info("log2info")
     log_2.error("log2test...")
+
+    while True:
+        log_2.error("log2test...")
+        time.sleep(9)
 
