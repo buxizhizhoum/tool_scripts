@@ -18,6 +18,7 @@ class Producer(Greenlet):
     def _run(self):
         """
         why the name start with _?
+        in order to rewrite method of Greenlet
         :return:
         """
         while True:
