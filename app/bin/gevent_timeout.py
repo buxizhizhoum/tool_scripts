@@ -48,5 +48,13 @@ finally:
 """
 this method use signal to process timeout.
 refer to the source code
+
+Wrap a call to function with a timeout; if the called function fails to return 
+before the timeout, cancel it and return a flag value, provided by 
+timeout_value keyword argument.
+
+If timeout expires but timeout_value is not provided, raise Timeout.
+
+Keyword argument timeout_value is not passed to function.
 """
 gevent.with_timeout(1, wait)  # most simply way to set timeout
