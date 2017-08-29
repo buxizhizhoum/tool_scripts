@@ -54,3 +54,7 @@ producer_consumer_basic.py
 
     Basic usage of producer and consumer, producer produce a random data to
     Queue and consumer consume it from Queue.
+
+profile_usage.py
+
+    python profile tool used to analyse the python program.
