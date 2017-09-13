@@ -46,7 +46,3 @@ if __name__ == "__main__":
         consumer.commit(offset)
         print message.offset
         time.sleep(1)
-        # break
-        # print(message.value)
-        # payload = parse_payload(message.value)
-        # print(payload)
