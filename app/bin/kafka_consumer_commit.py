@@ -1,5 +1,10 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+"""
+The usage of kafka-python Consumer.commit()
+
+Provide case related to commit offset manually.
+"""
 import json
 import base64
 import zlib
