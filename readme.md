@@ -58,3 +58,7 @@ producer_consumer_basic.py
 profile_usage.py
 
     python profile tool used to analyse the python program.
+
+decompress_in_memory
+
+    provide some methods to decompress tar.bz2 file in memory.
