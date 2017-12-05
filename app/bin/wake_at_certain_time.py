@@ -18,21 +18,17 @@ def wake_at_certain_time(datetime_time):
 
     :param datetime_time: time str in format of "%H:%M:%S"
     """
-    if type(datetime_time) == str:
-        datetime_time = datetime.datetime.strptime(
-            datetime_time, "%H:%M:%S").time()
-    else:
-        datetime_time = datetime_time.time()
+    current_time = datetime.datetime.now().strftime("%H:%M:%S:%f")
 
-    current_time = datetime.datetime.now().time()
     # calculate how long to sleep
-    max_time = max(datetime_time, current_time)
-    min_time = min(datetime_time, current_time)
-    delta_hour = max_time.hour - min_time.hour
-    delta_min = max_time.minute - min_time.minute
-    delta_seconds = max_time.second - min_time.second
+    delta_time = datetime.datetime.strptime(datetime_time, "%H:%M:%S") \
+                 - datetime.datetime.strptime(current_time, "%H:%M:%S:%f")
+    if delta_time.days < 0:
+        delta_time = datetime.timedelta(days=0,
+                                        seconds=delta_time.seconds,
+                                        microseconds=delta_time.microseconds)
 
-    total_seconds = delta_hour * 3600 + delta_min * 60 + delta_seconds
+    total_seconds = delta_time.seconds + delta_time.microseconds / 1000.0
     print("sleeping %s seconds" % total_seconds)
     time.sleep(total_seconds)
 
