@@ -8,11 +8,10 @@ not necessary.
 Pool is not suitable for producer and consumer
 """
 import time
-from multiprocessing import Process
 from multiprocessing import Pool
 
 
-class Math(Process):
+class Math(object):
     @staticmethod
     def square(num):
         res = num * num
