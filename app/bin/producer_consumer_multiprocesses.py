@@ -22,7 +22,8 @@ class ProducerProcess(Process):
         nums = range(5)
         while True:
             num = random.choice(nums)
-            queue.put(num)
+            # queue.put(num)  # this modify global variable.
+            self.queue.put(num)
             print "%s Produced %s" % (self.name, num)
             time.sleep(random.random())
 
@@ -38,7 +39,9 @@ class ConsumerProcess(Process):
 
     def run(self):
         while True:
-            num = queue.get()
+            # both of the get method of below work
+            # num = queue.get()  # this modify global variable
+            num = self.queue.get()
             # queue.task_done()  # queue from multiprocess have no task_done()
             print "%s consumed %s" % (self.name, num)
             time.sleep(random.random())
