@@ -7,7 +7,7 @@ when initializing
 import time
 import random
 from multiprocessing import Process
-from Queue import Queue
+from multiprocessing import Queue  # Queue should from multiprocessing
 
 
 class ProducerProcess(Process):
@@ -39,7 +39,7 @@ class ConsumerProcess(Process):
     def run(self):
         while True:
             num = queue.get()
-            queue.task_done()
+            # queue.task_done()  # queue from multiprocess have no task_done()
             print "%s consumed %s" % (self.name, num)
             time.sleep(random.random())
 
