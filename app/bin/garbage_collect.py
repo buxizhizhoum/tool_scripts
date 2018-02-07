@@ -32,6 +32,5 @@ if __name__ == "__main__":
     l = []
     l.append(l)
     del l
-
     # show the dirt ;-)
     dump_garbage()
