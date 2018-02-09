@@ -1,6 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import time
+# download mysql-connector from mysql official site, and install.
+# https://dev.mysql.com/doc/connector-python/en/connector-python-installation-binary.html
 import mysql.connector.pooling
 
 
