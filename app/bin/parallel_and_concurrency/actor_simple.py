@@ -121,4 +121,4 @@ if __name__ == "__main__":
     print("send complete")
     time.sleep(2)
     p.send(ActorExit)  # send ActorExit to end the thread.
-    # p.close()  # this should also end the thread.
+    # p.close()  # this should also end the thread, but still have some problem
