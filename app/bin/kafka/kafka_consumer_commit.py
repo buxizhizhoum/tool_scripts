@@ -9,10 +9,10 @@ import json
 import base64
 import zlib
 import time
-from kafka import KafkaProducer
-from kafka import KafkaConsumer
-from kafka import TopicPartition
-from kafka import OffsetAndMetadata
+from app.bin.kafka import KafkaProducer
+from app.bin.kafka import KafkaConsumer
+from app.bin.kafka import TopicPartition
+from app.bin.kafka import OffsetAndMetadata
 
 
 def parse_payload(value):
