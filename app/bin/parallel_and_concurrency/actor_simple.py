@@ -7,6 +7,7 @@ import datetime
 import threading
 import time
 from Queue import Queue
+from Queue import Empty
 
 QSIZE = 10
 
@@ -36,9 +37,15 @@ class Actor(object):
     def recv(self):
         """
         receive msg, if msg is ActorExit, raise ActorExit exception.
+
+        if there is no timeout parameter, close() method could not close
+        thread since thread will block at self._mailbox.get()
         :return:
         """
-        msg = self._mailbox.get()
+        # if there is no timeout parameter, close() method could not close
+        # thread since thread will block at self._mailbox.get()
+        msg = self._mailbox.get(timeout=1)  # attention: there is timeout
+
         if msg is ActorExit:
             raise ActorExit()
         return msg
@@ -50,12 +57,12 @@ class Actor(object):
     def start(self):
         t = threading.Thread(target=self._run)
 
-        # t.daemon = True
+        # t.daemon = True  # think more here
         t.start()
 
     def run(self):
-        msg = self.recv()
         while True:
+            msg = self.recv()
             print(msg)
 
     def _run(self):
@@ -69,6 +76,9 @@ class Actor(object):
             except ActorExit:
                 print("exit")
                 self._running = False  # this will kill all thread
+            except Empty:
+                print("queue is empty")
+                continue
 
 # another method to close thread when there is ActorExit signal
     # def _run(self):
@@ -114,11 +124,18 @@ class PrintActor(Actor):
 if __name__ == "__main__":
     p = PrintActor(QSIZE)
     p.start()
-    # start a thread for each send with no block.
+    # start a thread for each send() with no block.
     p.send(1)
     p.send(2)
-    # program will reach here with no block at send before.
+    # program will reach here with no block at send() before.
     print("send complete")
     time.sleep(2)
-    p.send(ActorExit)  # send ActorExit to end the thread.
-    # p.close()  # this should also end the thread, but still have some problem
+
+    # send ActorExit and close() are two method to close a thread
+
+    # p.send(ActorExit)  # send ActorExit to end the thread.
+
+    # this could also stop the thread, but if the get() method of queue
+    # is blocking forever, the thread will have no chance to
+    # check running flag which will leave an never close thread.
+    p.close()
