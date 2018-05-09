@@ -38,8 +38,8 @@ class Actor(object):
         t.start()
 
     def run(self):
-        msg = self.recv()
         while True:
+            msg = self.recv()
             print(msg)
 
     def _bootstrap(self):
@@ -69,5 +69,7 @@ if __name__ == "__main__":
     # p.send(2)
     for i in range(10):
         p.send(i)
+    print("send complete")
     p.close()
     p.join()
+    print("end")
