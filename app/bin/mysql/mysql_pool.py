@@ -149,3 +149,20 @@ if __name__ == "__main__":
             print i
         print "time cousumed:", time.time() - t0
 
+    # sql = "insert into elec_workshop_15min_2018(stat_time, " \
+    #       "workshop_id, kwh, spfv, charge, p, pi, pe, kwhi, kwhe, " \
+    #       "q, qi, qe, kvarhi, kvarhe) " \
+    #       "values(%(stat_time)s, %(workshop_id)s, %(kwh)s, " \
+    #       "%(spfv)s, %(charge)s, %(p)s, %(pi)s, %(pe)s, " \
+    #       "%(kwhi)s, %(kwhe)s, " \
+    #       "%(q)s, %(qi)s, %(qe)s, %(kvarhi)s, %(kvarhe)s) " \
+    #       "on DUPLICATE KEY UPDATE stat_time = values(stat_time), " \
+    #       "workshop_id = values(workshop_id), kwh = values(kwh), " \
+    #       "spfv = values(spfv), charge = values(charge), " \
+    #       "p = values(p), pi = values(pi), pe = values(pe), " \
+    #       "kwhi = values(kwhi), kwhe = values(kwhe), q = values(q), " \
+    #       "qi = values(qi), qe = values(qe), kvarhi = values(kvarhi), " \
+    #       "kvarhe = values(kvarhe)"
+    # self.mysql.execute_many_SQL_no_close(sql, data_dict, commit=commit)
+
+
