@@ -3,6 +3,7 @@
 import time
 # download mysql-connector from mysql official site, and install.
 # https://dev.mysql.com/doc/connector-python/en/connector-python-installation-binary.html
+# pip install mysql-connector-python
 import mysql.connector.pooling
 
 
