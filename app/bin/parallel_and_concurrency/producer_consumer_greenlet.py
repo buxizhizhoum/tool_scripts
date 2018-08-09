@@ -5,7 +5,7 @@ import random
 import time
 from gevent import Greenlet
 from gevent import monkey
-monkey.patch_all()
+monkey.patch_all()  # patch as early as possible
 from gevent.queue import Queue  # coroutine safe queue of gevent
 
 
@@ -26,6 +26,7 @@ class Producer(Greenlet):
             self.queue.put(num)
             print "Producer %s: produce %s" % (self.name, num)
             time.sleep(random.random())
+            # gevent.sleep(random.random())
 
 
 class Consumer(Greenlet):
@@ -39,6 +40,7 @@ class Consumer(Greenlet):
             num = self.queue.get()
             print "Consumer %s: consume %s" % (self.name, num)
             time.sleep(random.random())
+            # gevent.sleep(random.random())
 
 
 if __name__ == "__main__":
