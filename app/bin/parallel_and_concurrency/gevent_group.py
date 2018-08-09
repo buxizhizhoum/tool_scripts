@@ -17,11 +17,11 @@ def producer(queue):
         print("produce: {}".format(num))
 
 
-def consumer(queue):
+def consumer(queue, name):
     while True:
         num = queue.get()
         gevent.sleep(1)
-        print("consum: {}".format(num))
+        print("consum {}: {}".format(name, num))
 
 
 if __name__ == "__main__":
@@ -33,18 +33,20 @@ if __name__ == "__main__":
     # producer_group.join()
 
     # start a batch of consumers firstly
-    consumers = [gevent.spawn(consumer, q) for i in range(10)]
+    consumers = [gevent.spawn(consumer, q, i) for i in range(10)]
+    new_consumer = gevent.spawn(consumer, q, "new")
 
     group = Group()
     [group.add(item) for item in consumers]
 
-    group.add(single_producer)
+    # group.add(single_producer)
+    # group.join() will join all spawned Greenlet no matter whether
+    # they are added or not
     group.join()
     print("consumer group started")
 
     # todo: below lines are not reachable
     # add another consumer
-    new_consumer = gevent.spawn(consumer, q)
     group.add(new_consumer)
     group.join()
     print("add a new consumer")
