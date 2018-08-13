@@ -22,8 +22,7 @@ class ProducerThread(Thread):
 
     def run(self):
         nums = range(5)
-        # while True:
-        for i in nums:
+        while True:
             num = random.choice(nums)
             queue.put(num)
             print "%s Produced %s" % (self.name, num)
@@ -73,7 +72,6 @@ if __name__ == "__main__":
     # if join is necessary
     # join should be placed after all threads have been started,
     for item in chain(producers, consumers):
-        print item
         item.join()
 
 print "started all threads"
