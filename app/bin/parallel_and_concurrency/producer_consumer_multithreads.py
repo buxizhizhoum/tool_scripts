@@ -9,6 +9,8 @@ import random
 from threading import Thread
 from Queue import Queue
 
+from itertools import chain
+
 
 class ProducerThread(Thread):
     """
@@ -20,11 +22,12 @@ class ProducerThread(Thread):
 
     def run(self):
         nums = range(5)
-        while True:
+        # while True:
+        for i in nums:
             num = random.choice(nums)
             queue.put(num)
             print "%s Produced %s" % (self.name, num)
-            time.sleep(random.random())
+            time.sleep(1)
 
 
 class ConsumerThread(Thread):
@@ -41,32 +44,38 @@ class ConsumerThread(Thread):
             num = queue.get()
             queue.task_done()
             print "%s consumed %s" % (self.name, num)
-            time.sleep(random.random())
+            time.sleep(1)
 
 
 if __name__ == "__main__":
     queue = Queue(10)
 
-    # simple method to start
-    # producer = ProducerThread("Tom", queue)
-    # consumer = ConsumerThread("Jerry", queue)
-    # producer.start()
-    # consumer.start()
-    # producer.join()  # join block main process until all threads have finished
-    # consumer.join()  # join is not necessary
-
-    # another method to start
     producer_list = ["Tom", "Cat", "Dog"]
     consumer_list = ["Jerry", "Cow", "Chicken"]
 
     producers = [ProducerThread(item, queue) for item in producer_list]
     consumers = [ConsumerThread(item, queue) for item in consumer_list]
 
-    # todo: when join() used, the threads could not run
+    # when join() used, the threads could not run
+    # because join will wait for the threads to end
     for producer in producers:
+        # when main thread exit, daemon threads are killed automatically
+        producer.daemon = True
         producer.start()  # start each producer
+        # join() should not be placed here, otherwise, lines below
+        # will be executed only after threads joined above have finished.
         # producer.join()
 
     for consumer in consumers:
+        consumer.daemon = True
         consumer.start()  # start each consumer
-        # consumer.join()
+
+    # if join is necessary
+    # join should be placed after all threads have been started,
+    for item in chain(producers, consumers):
+        print item
+        item.join()
+
+print "started all threads"
+
+

@@ -9,6 +9,8 @@ import random
 from multiprocessing import Process
 from multiprocessing import Queue  # Queue should from multiprocessing
 
+from itertools import chain
+
 
 class ProducerProcess(Process):
     """
@@ -56,11 +58,14 @@ if __name__ == "__main__":
     producers = [ProducerProcess(item, queue) for item in producer_list]
     consumers = [ConsumerProcess(item, queue) for item in consumer_list]
 
-    # todo: when join() used, the threads could not run
     for producer in producers:
+        producer.daemon = True
         producer.start()  # start each producer
-        # producer.join()
 
     for consumer in consumers:
+        consumer.daemon = True
         consumer.start()  # start each consumer
-        # consumer.join()
+
+    # all should be joined?
+    for item in chain(producers, consumers):
+        item.join()
