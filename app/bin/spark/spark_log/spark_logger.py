@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 """
-userd by spark_log to log something at executor
+userd by spark_log.py to log something at executor
 https://stackoverflow.com/questions/40806225/pyspark-logging-from-the-executor
 """
 import os
