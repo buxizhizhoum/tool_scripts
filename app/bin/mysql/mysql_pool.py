@@ -124,7 +124,7 @@ class MySQLPool(object):
         """
         # get connection form connection pool instead of create one.
         conn = self.pool.get_connection()
-        cursor = conn.cursor()
+        cursor = conn.cursor(dictionary=True)
         cursor.executemany(sql, args)
         if commit is True:
             conn.commit()
